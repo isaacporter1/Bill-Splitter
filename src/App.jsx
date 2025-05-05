@@ -84,6 +84,7 @@ function App() {
                 placeholder={placeholderNames[index] || `Person ${index + 1}`}
                 value={person.name}
                 onChange={(e) => {
+                  //is this being called any time the name is changed by one letter? Add a console log to see it spamming updates, maybe thats normal tho
                   const updated = [...people];
                   updated[index].name = e.target.value;
                   setPeople(updated);
@@ -96,6 +97,7 @@ function App() {
                 placeholder="0.00"
                 value={person.subtotal}
                 onChange={(e) => {
+                  //same here ^^
                   const updated = [...people];
                   updated[index].subtotal = parseFloat(e.target.value || 0);
                   setPeople(updated);
@@ -107,6 +109,7 @@ function App() {
             setState(3)
             
             const totalSub = people.reduce((acc, person) => acc + person.subtotal, 0);
+          //check how this method is used usually
             setSubTotal(totalSub);
           }}>
             Confirm
