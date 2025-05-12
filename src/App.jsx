@@ -23,18 +23,20 @@ function App() {
   return (
     <>
       {state !== 0 && (
-        <div>
+        <div className="absolute top-4 left-4">
           <button
-            onClick={() => state !== 1 ? setState(1) : setState(0)}
+            className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded"
+            onClick={() => (state !== 1 ? setState(1) : setState(0))}
           >
             Reset
           </button>
         </div>
       )}
 
+
       {state == 0 && (
         <div>
-          <button
+          <button className="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded"
             onClick={() => setState(1)}>
             Start Splittin the Bill ????? :D
           </button>
@@ -55,11 +57,22 @@ function App() {
       )} */}
 
       {state == 1 && (
-        <div>
-          How many people are you splitting the bill with? <input id="personCount" type="number" min="2" max="20" step="1"
+        <div className="flex items-center space-x-3">
+          <span className="text-white">
+            How many people are you splitting the bill with?
+          </span>
+          <input
+            className="border-b border-white bg-transparent text-white focus:outline-none px-2 py-1"
+            id="personCount"
+            type="number"
+            min="2"
+            max="20"
+            step="1"
             value={personCount}
-            onChange={(e) => setPersonCount(Number(e.target.value))} />
+            onChange={(e) => setPersonCount(Number(e.target.value))}
+          />
           <button
+            className="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded"
             onClick={() => {
               const initialPeople = Array.from({ length: personCount }, () => ({
                 name: '',
@@ -68,7 +81,8 @@ function App() {
               }));
               setPeople(initialPeople);
               setState(2);
-            }}>
+            }}
+          >
             Confirm
           </button>
         </div>
@@ -79,7 +93,7 @@ function App() {
           {people.map((person, index) => (
             <div key={index} style={{ marginTop: "15px" }}>
               Person {index + 1} Name:{' '}
-              <input
+              <input className="border border-white rounded px-2 py-1 text-white"
                 type="text"
                 placeholder={placeholderNames[index] || `Person ${index + 1}`}
                 value={person.name}
@@ -90,8 +104,8 @@ function App() {
                   setPeople(updated);
                 }}
               />
-              {' '}– SubTotal:{' '}$
-              <input
+              {' '}– SubTotal:{' '}${' '}
+              <input className="border border-white rounded px-2 py-1 text-white"
                 type="number"
                 step="0.01"
                 placeholder="0.00"
@@ -105,24 +119,27 @@ function App() {
               />
             </div>
           ))}
-          <div style={{ marginTop: "15px" }}><button onClick={() => {
-            setState(3)
-            
-            const totalSub = people.reduce((acc, person) => acc + person.subtotal, 0);
-          //check how this method is used usually
-            setSubTotal(totalSub);
-          }}>
-            Confirm
-          </button></div>
+          <div style={{ marginTop: "15px" }}>
+            <button className="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded"
+              onClick={() => {
+                setState(3)
+
+                const totalSub = people.reduce((acc, person) => acc + person.subtotal, 0);
+                //check how this method is used usually
+                setSubTotal(totalSub);
+              }}>
+              Confirm
+            </button></div>
         </div>
       )}
 
       {state == 3 && (
-        <div>
-          Total Tax: $<input id="taxAmount" type="number" step="0.01" placeholder="0.00"
+        <div className="flex items-center space-x-4">
+          Total Tax: $<input className="border-b border-white bg-transparent text-white focus:outline-none px-2 py-1"
+           id="taxAmount" type="number" step="0.01" placeholder="0.00"
             onChange={(e) => { setTax(Number(e.target.value)); }}
           />
-          <button
+          <button className="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded"
             onClick={() => setState(4)}>
             Confirm
           </button>
@@ -130,11 +147,12 @@ function App() {
       )}
 
       {state == 4 && (
-        <div>
-          Total Tip: $<input id="tipAmount" type="number" step="0.01" placeholder="0.00"
+        <div className="flex items-center space-x-4">
+          Total Tip: $<input className="border-b border-white bg-transparent text-white focus:outline-none px-2 py-1"
+          id="tipAmount" type="number" step="0.01" placeholder="0.00"
             onChange={(e) => { setTip(Number(e.target.value)); }}
           />
-          <button
+          <button className="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded"
             onClick={() => {
               setState(5)
 
