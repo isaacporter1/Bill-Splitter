@@ -49,7 +49,7 @@ body {
   height: 100vh;
   margin: 0;
   overflow: hidden;
-  animation: moveStars 40s linear infinite;
+  animation: moveStars 20s linear infinite;
 }
 
 @keyframes moveStars {
@@ -57,7 +57,7 @@ body {
     background-position-x: 0;
   }
   100% {
-    background-position-x: -1273px;
+    background-position-x: -1227px;
   }
 }
 
